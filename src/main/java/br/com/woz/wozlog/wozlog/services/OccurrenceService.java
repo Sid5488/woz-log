@@ -7,7 +7,6 @@ import br.com.woz.wozlog.wozlog.domain.models.Occurrence;
 import br.com.woz.wozlog.wozlog.domain.repositories.DeliveryRepository;
 import br.com.woz.wozlog.wozlog.exceptions.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

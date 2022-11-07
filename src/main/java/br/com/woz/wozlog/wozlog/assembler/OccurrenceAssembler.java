@@ -1,8 +1,6 @@
 package br.com.woz.wozlog.wozlog.assembler;
 
-import br.com.woz.wozlog.wozlog.DTOs.DeliveryDTO;
 import br.com.woz.wozlog.wozlog.DTOs.OccurrenceDTO;
-import br.com.woz.wozlog.wozlog.domain.models.Delivery;
 import br.com.woz.wozlog.wozlog.domain.models.Occurrence;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
