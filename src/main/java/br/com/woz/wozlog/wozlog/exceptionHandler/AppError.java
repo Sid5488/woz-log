@@ -1,6 +1,7 @@
 package br.com.woz.wozlog.wozlog.exceptionHandler;
 
-import br.com.woz.wozlog.wozlog.exceptions.RuleExcetion;
+import br.com.woz.wozlog.wozlog.exceptions.EntityNotFoundException;
+import br.com.woz.wozlog.wozlog.exceptions.RuleException;
 import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -49,9 +50,21 @@ public class AppError extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, error, headers, status, request);
     }
 
-    @ExceptionHandler(RuleExcetion.class)
-    public ResponseEntity<Object> handleRule(RuleExcetion ex, WebRequest request) {
+    @ExceptionHandler(RuleException.class)
+    public ResponseEntity<Object> handleRule(RuleException ex, WebRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Error error = new Error();
+        error.setStatus(status.value());
+        error.setDateTime(OffsetDateTime.now());
+        error.setTitle(ex.getMessage());
+
+        return handleExceptionInternal(ex, error, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> handleEntityNotFound(RuleException ex, WebRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
 
         Error error = new Error();
         error.setStatus(status.value());

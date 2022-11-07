@@ -1,9 +1,9 @@
 package br.com.woz.wozlog.wozlog.exceptions;
 
-public class RuleExcetion extends RuntimeException {
+public class EntityNotFoundException extends RuleException {
     private static final long serialVersionUID = 1L;
 
-    public RuleExcetion(String message) {
+    public EntityNotFoundException(String message) {
         super(message);
     }
 }

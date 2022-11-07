@@ -2,7 +2,7 @@ package br.com.woz.wozlog.wozlog.services;
 
 import br.com.woz.wozlog.wozlog.domain.models.Client;
 import br.com.woz.wozlog.wozlog.domain.repositories.ClientRepository;
-import br.com.woz.wozlog.wozlog.exceptions.RuleExcetion;
+import br.com.woz.wozlog.wozlog.exceptions.RuleException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +14,7 @@ public class ClientService {
 
     public Client getById(Long id) {
         return clientRepository.findById(id)
-                .orElseThrow(() -> new RuleExcetion("Cliente não encontrado."));
+                .orElseThrow(() -> new RuleException("Cliente não encontrado."));
     }
 
     @Transactional
@@ -24,7 +24,7 @@ public class ClientService {
                 .anyMatch(clientExist -> !clientExist.equals(client));
 
         if(emailInUse) {
-            throw new RuleExcetion("E-mail em uso!");
+            throw new RuleException("E-mail em uso!");
         }
 
         return clientRepository.save(client);

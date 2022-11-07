@@ -1,13 +1,11 @@
 package br.com.woz.wozlog.wozlog.controllers;
 
 import br.com.woz.wozlog.wozlog.DTOs.DeliveryDTO;
-import br.com.woz.wozlog.wozlog.DTOs.RecipientDTO;
 import br.com.woz.wozlog.wozlog.assembler.DeliveryAssembler;
 import br.com.woz.wozlog.wozlog.domain.models.Delivery;
 import br.com.woz.wozlog.wozlog.domain.repositories.DeliveryRepository;
 import br.com.woz.wozlog.wozlog.services.DeliveryService;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

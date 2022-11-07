@@ -14,6 +14,8 @@ import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,6 +34,9 @@ public class Delivery {
     @ConvertGroup(from = Default.class, to = ValidationGroups.ClientId.class)
     private Client client;
 
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL)
+    private List<Occurrence> occurrences = new ArrayList<>();
+
     @Valid
     @NotNull
     @Embedded
@@ -49,4 +54,15 @@ public class Delivery {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private OffsetDateTime finishedDate;
+
+    public Occurrence addOccurrence(String description) {
+        Occurrence occurrence = new Occurrence();
+        occurrence.setDescription(description);
+        occurrence.setRegisterDate(OffsetDateTime.now());
+        occurrence.setDelivery(this);
+
+        this.getOccurrences().add(occurrence);
+
+        return occurrence;
+    }
 }
